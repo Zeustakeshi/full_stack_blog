@@ -27,7 +27,7 @@ const Preview = ({ params }: Props) => {
         (async () => {
             const res = await axios({
                 method: "GET",
-                url: `${process.env.MAIN_URL}/api/posts/details/${params.id}`,
+                url: `/api/posts/details/${params.id}`,
             });
             setPost(res.data);
         })();
