@@ -15,6 +15,8 @@ const roboto = Roboto({
     weight: ["400", "500", "700"],
 });
 
+const mainURL = process.env.MAIN_URL;
+
 export const generateMetadata = async ({
     params,
 }: {
@@ -22,7 +24,7 @@ export const generateMetadata = async ({
 }) => {
     const res = await axios({
         method: "GET",
-        url: `${process.env.MAIN_URL}/api/posts/details/${params.id}`,
+        url: `${mainURL}/api/posts/details/${params.id}`,
     });
 
     const data: PostType = res.data;
@@ -36,7 +38,7 @@ export const generateMetadata = async ({
 const BlogPage = async ({ params }: { params: { id: string } }) => {
     const res = await axios({
         method: "GET",
-        url: `${process.env.MAIN_URL}/api/posts/details/${params.id}`,
+        url: `${mainURL}/api/posts/details/${params.id}`,
     });
     const data: PostType = res.data;
     return (
