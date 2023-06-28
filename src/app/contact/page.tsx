@@ -11,7 +11,7 @@ export const metadata = {
 const Contact = () => {
     return (
         <div className="w-full h-full flex flex-col justify-start items-center gap-5">
-            <h2 className="text-3xl font-semibold">Let's Keep in Touch</h2>
+            <h2 className="text-3xl font-semibold">Let&#39s Keep in Touch</h2>
             <div className="mt-8 flex justify-between items-center w-full h-full">
                 <div className="animation-scale  relative flex-1 flex justify-center items-center">
                     <Image

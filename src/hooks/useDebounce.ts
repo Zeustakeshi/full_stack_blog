@@ -9,6 +9,6 @@ export default function useDebounce(value: any, duration: number = 500) {
         return () => {
             clearTimeout(timer);
         };
-    }, [value]);
+    }, [value, duration]);
     return debounceValue;
 }

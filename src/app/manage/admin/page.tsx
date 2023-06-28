@@ -108,7 +108,7 @@ const DashboardAdmin = () => {
                 console.log(error);
             }
         })();
-    }, [data?.user.isAdmin]);
+    }, [data?.user.isAdmin, router]);
 
     if (!data) {
         return (
@@ -136,6 +136,7 @@ const DashboardAdmin = () => {
                         {posts.map((post, index) => {
                             return (
                                 <PostManageItem
+                                    key={post._id}
                                     post={post}
                                     id={index + 1}
                                     actions={["view", "resolve", "reject"]}

@@ -28,7 +28,7 @@ const Login: React.FC<Props> = ({}) => {
 
     useEffect(() => {
         if (status === "authenticated") router.replace("/");
-    }, [status]);
+    }, [status, router]);
 
     const {
         register,
@@ -79,7 +79,7 @@ const Login: React.FC<Props> = ({}) => {
                 {/* <ButtonLoginWithGoogle></ButtonLoginWithGoogle> */}
                 <ButtonLoginWithGithub></ButtonLoginWithGithub>
                 <p className="flex justify-center items-center gap-1 text-sm">
-                    <span className="">Don't have an account yet? </span>
+                    <span className="">Don&#39t have an account yet? </span>
                     <Link
                         className="text-md text-blue-600 font-semibold underline"
                         href="/register"
@@ -108,8 +108,11 @@ type InputFieldType = {
     error?: FieldError;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-const InputField: React.FC<InputFieldType> = forwardRef(
-    ({ error, ...props }, ref: ForwardedRef<HTMLInputElement>) => {
+const InputField: React.FC<InputFieldType> = React.forwardRef(
+    function InputField(
+        { error, ...props },
+        ref: React.ForwardedRef<HTMLInputElement>
+    ) {
         return (
             <div className="w-full">
                 <input

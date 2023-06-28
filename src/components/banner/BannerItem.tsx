@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const BannerItem: React.FC<BannerItemType> = ({ id, imgURL, title, desc }) => {
+const BannerItem: React.FC<BannerItemType> = ({ _id, imgURL, title, desc }) => {
     const router = useRouter();
     return (
         <div
-            onClick={() => router.push(`/blog/${id}`)}
+            onClick={() => router.push(`/blog/${_id}`)}
             className="relative w-full mx-auto h-[600px] bg-white rounded-md overflow-hidden shadow-md"
         >
             <Image

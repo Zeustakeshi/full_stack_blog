@@ -29,7 +29,7 @@ const ButtonLikePost: React.FC<ButtonLikePostType> = ({
 
             setLiked(res.data);
         })();
-    }, [status]);
+    }, [status, data?.user._id, postId]);
 
     const handler = async (action: "like" | "unlike") => {
         try {

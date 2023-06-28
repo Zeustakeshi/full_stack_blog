@@ -20,7 +20,7 @@ type Props = {
     params: { id: string };
 };
 
-const page = ({ params }: Props) => {
+const Preview = ({ params }: Props) => {
     const [post, setPost] = useState<PostType>();
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const page = ({ params }: Props) => {
             });
             setPost(res.data);
         })();
-    }, []);
+    }, [params.id]);
 
     if (!post)
         return (
@@ -94,4 +94,4 @@ const page = ({ params }: Props) => {
     );
 };
 
-export default page;
+export default Preview;

@@ -32,7 +32,7 @@ const Register = (props: Props) => {
 
     useEffect(() => {
         if (status === "authenticated") router.replace("/");
-    }, [status]);
+    }, [status, router]);
 
     const {
         register,
@@ -148,20 +148,21 @@ type InputFieldType = {
     error?: FieldError;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-const InputField: React.FC<InputFieldType> = forwardRef(
-    ({ error, ...props }, ref: ForwardedRef<HTMLInputElement>) => {
-        return (
-            <div className="w-full">
-                <input
-                    ref={ref}
-                    className="border border-slate-300 dark:border-none dark:bg-slate-700 outline-blue-600 w-full px-5 py-3 rounded-md"
-                    {...props}
-                />
-                <ErrorMessage error={error}></ErrorMessage>
-            </div>
-        );
-    }
-);
+const InputField: React.FC<InputFieldType> = forwardRef(function InputField(
+    { error, ...props },
+    ref: ForwardedRef<HTMLInputElement>
+) {
+    return (
+        <div className="w-full">
+            <input
+                ref={ref}
+                className="border border-slate-300 dark:border-none dark:bg-slate-700 outline-blue-600 w-full px-5 py-3 rounded-md"
+                {...props}
+            />
+            <ErrorMessage error={error}></ErrorMessage>
+        </div>
+    );
+});
 
 type ErrorMessageType = {
     error?: FieldError;

@@ -48,7 +48,7 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
                 console.log(error);
             }
         })();
-    }, []);
+    }, [params.id]);
 
     useEffect(() => {
         if (!title.trim()) document.title = "Mh-blog";
@@ -59,7 +59,7 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
         if (status === "unauthenticated") {
             router.replace("/login");
         }
-    }, [status]);
+    }, [status, router]);
 
     const handleUpdate = () => {
         initializeApp(firebaseConfig);

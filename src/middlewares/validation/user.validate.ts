@@ -1,5 +1,5 @@
 import Joi from "joi";
-export default {
+const userValidate = {
     register: Joi.object({
         username: Joi.string().min(5).required(),
         email: Joi.string()
@@ -8,3 +8,5 @@ export default {
         password: Joi.string().min(8).required(),
     }),
 };
+
+export default userValidate;

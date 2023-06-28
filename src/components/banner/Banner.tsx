@@ -41,9 +41,9 @@ const Banner = (props: Props) => {
                 }}
                 modules={[Autoplay, Pagination, EffectCreative]}
             >
-                {[blogData[3], blogData[2], blogData[4]].map((item) => {
+                {[blogData[3], blogData[2], blogData[4]].map((item, index) => {
                     return (
-                        <SwiperSlide key={item.id}>
+                        <SwiperSlide key={index}>
                             <BannerItem {...item}></BannerItem>
                         </SwiperSlide>
                     );

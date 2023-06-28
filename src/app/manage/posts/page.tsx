@@ -25,7 +25,7 @@ const Posts = () => {
                 console.log(error);
             }
         })();
-    }, []);
+    }, [data?.user._id]);
 
     return (
         <div>
@@ -42,6 +42,7 @@ const Posts = () => {
                     {posts.map((post, index) => {
                         return (
                             <PostManageItem
+                                key={post._id}
                                 post={post}
                                 id={index + 1}
                                 actions={["view", "edit", "delete"]}

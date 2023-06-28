@@ -1,23 +1,16 @@
 "use client";
+import Categories from "@/components/blog/Categories";
+import ContentEditor from "@/components/blog/ContentEditor";
 import Button from "@/components/button/Button";
 import ImageUpload from "@/components/image/ImageUpload";
-import TextEditor from "@/components/textEditor/TextEditor";
 import useFIrebaseImage from "@/hooks/useFirebaseImgae";
 import { PostCategroryType } from "@/types/blog.type";
 import firebaseConfig from "@/utils/firebase.config";
 import axios from "axios";
 import { initializeApp } from "firebase/app";
-import parse from "html-react-parser";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, {
-    ChangeEvent,
-    useEffect,
-    useLayoutEffect,
-    useState,
-} from "react";
-import { CgCloseO } from "react-icons/cg";
+import { ChangeEvent, useEffect, useLayoutEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const NewBlog = () => {
@@ -40,7 +33,7 @@ const NewBlog = () => {
         if (status === "unauthenticated") {
             router.replace("/login");
         }
-    }, [status]);
+    }, [status, router]);
 
     const handleCreate = () => {
         initializeApp(firebaseConfig);
@@ -138,139 +131,6 @@ const NewBlog = () => {
             >
                 Create
             </Button>
-        </div>
-    );
-};
-
-type ContentEditorType = {
-    content: string;
-    setContent: React.Dispatch<React.SetStateAction<string>>;
-};
-
-const ContentEditor: React.FC<ContentEditorType> = ({
-    content,
-    setContent,
-}) => {
-    const [showReview, setShowReview] = useState<boolean>(false);
-    // console.log(content);
-    return (
-        <div className="my-8">
-            <div className=" flex justify-between items-start w-full h-full gap-5">
-                <div className="flex-1">
-                    <TextEditor
-                        content={content}
-                        setContent={setContent}
-                    ></TextEditor>
-                </div>
-                {showReview && (
-                    <div className="mt-[112px] flex-1 entry-content">
-                        {parse(content || "")}
-                    </div>
-                )}
-            </div>
-            <div className="flex w-full justify-end items-center gap-5 my-5">
-                <p>Show review: </p>
-                <Button
-                    onClick={() => setShowReview((prev) => !prev)}
-                    className={`${
-                        showReview
-                            ? "bg-blue-600"
-                            : "shadow-[rgb(204,219,232)_3px_3px_6px_0px_inset,rgba(255,255,255,0.5)_-3px_-3px_6px_1px_inset] dark:shadow-[rgb(20,30,30)_3px_3px_6px_0px_inset,rgba(20,30,30,0.5)_-3px_-3px_6px_1px_inset]"
-                    } !p-1 flex justify-center items-center relative gap-2  rounded-full`}
-                >
-                    <div className="w-[30px] h-[30px] flex justify-center items-center"></div>
-                    <div
-                        className={`top-[50%]  -translate-y-[50%] ${
-                            showReview
-                                ? "right-1 bg-white"
-                                : "left-1 bg-blue-500"
-                        } w-[30px] h-[30px]  rounded-full shadow-xl absolute transition-all duration-1000`}
-                    ></div>
-                    <div className="w-[30px] h-[30px] flex justify-center items-center"></div>
-                </Button>
-            </div>
-        </div>
-    );
-};
-
-type CategoriesType = {
-    categories: PostCategroryType[];
-    setCategories: React.Dispatch<React.SetStateAction<PostCategroryType[]>>;
-};
-
-const Categories: React.FC<CategoriesType> = ({
-    categories,
-    setCategories,
-}) => {
-    const removeCategory = (id: number) => {
-        setCategories((prev) => prev.filter((_, index) => index !== id));
-    };
-    return (
-        <div className="row-span-2 col-span-1 border border-slate-300 dark:border-slate-800 p-5 flex justify-start items-start gap-3 flex-wrap">
-            {categories.map((category, index) => {
-                return (
-                    <div
-                        key={index}
-                        className="group relative inline-block px-4 py-2 rounded-md bg-slate-200 dark:bg-slate-800"
-                    >
-                        {category}
-                        <span
-                            onClick={() => removeCategory(index)}
-                            className="group-hover:flex hidden cursor-pointer rounded-full absolute -top-2 -right-2 bg-slate-300 dark:bg-slate-700 w-6 h-6 justify-center items-center text-xs transition-all"
-                        >
-                            <CgCloseO></CgCloseO>
-                        </span>
-                    </div>
-                );
-            })}
-            {categories.length <= 8 && (
-                <ButtonAddCategory
-                    setCategories={setCategories}
-                ></ButtonAddCategory>
-            )}
-        </div>
-    );
-};
-
-type ButtonAddCategoryType = {
-    setCategories: React.Dispatch<React.SetStateAction<PostCategroryType[]>>;
-};
-
-const ButtonAddCategory: React.FC<ButtonAddCategoryType> = ({
-    setCategories,
-}) => {
-    const [showInput, setShowInput] = useState(false);
-    const [inputValue, setInputValue] = useState("");
-
-    const handleAddCategory = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (!inputValue.trim()) return;
-        setCategories((prev) => [...prev, inputValue]);
-        setShowInput(false);
-        setInputValue("");
-    };
-
-    if (showInput)
-        return (
-            <form onSubmit={handleAddCategory} className="w-[150px] h-[50px]">
-                <input
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onBlur={() => setShowInput(false)}
-                    className="px-4 py-2 rounded-md border dark:border-slate-700 dark:bg-slate-800 dark:outline-none outline-blue-600 border-slate-200 w-full h-full"
-                    autoFocus
-                    type="text"
-                    placeholder="#"
-                />
-            </form>
-        );
-
-    return (
-        <div
-            onClick={() => setShowInput(true)}
-            className="w-[40px] h-[40px] rounded-lg cursor-pointer bg-slate-200 dark:bg-slate-700 relative flex justify-center items-center px-0 py-0 "
-        >
-            <Image src="/push.svg" alt="plus" width={25} height={25}></Image>
         </div>
     );
 };

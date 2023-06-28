@@ -14,7 +14,7 @@ const SearchPost: React.FC<Props> = ({ onSearch }) => {
     useEffect(() => {
         if (!debounceValue.trim()) return;
         onSearch(debounceValue);
-    }, [debounceValue]);
+    }, [debounceValue, onSearch]);
 
     return (
         <div className="">
