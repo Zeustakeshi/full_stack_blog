@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.main {
+    @apply flex items-center justify-center flex-col w-full h-full;
+}
+
+.app-container {
+    @apply relative z-10 max-w-7xl mx-auto sm:px-16 px-6 w-full h-full;
+}
+
+.animation-scale {
+    animation: scale-animation 3s infinite alternate linear;
+}
+
+@keyframes scale-animation {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.cs-shadow-1 {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    @apply dark:shadow-md;
+}
+
+.manage-post-status--pending {
+    @apply text-gray-500;
+}
+
+.manage-post-status--public {
+    @apply text-green-600;
+}
+
+.manage-post-status--reject {
+    @apply text-rose-600;
+}

@@ -1,0 +1,130 @@
+.entry-content {
+    width: 100%;
+    /* color: #292d32; */
+}
+
+.quill {
+    position: relative;
+}
+.ql-toolbar {
+    @apply bg-slate-200 dark:bg-slate-700;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
+    z-index: 10;
+}
+
+.ql-toolbar.ql-snow {
+    @apply border-none rounded-md px-5 py-3 text-xl;
+}
+
+.ql-snow .ql-stroke,
+.ql-snow .ql-fill,
+.ql-snow .ql-picker-label {
+    @apply dark:text-slate-200;
+    stroke: currentColor;
+}
+
+.ql-editor {
+    @apply min-h-[300px]
+    dark:text-white
+    text-black;
+}
+
+.entry-content h1,
+.entry-content .ql-editor h1 {
+    padding: 25px 0;
+    font-weight: 600;
+    font-size: 30px !important;
+    line-height: 36px;
+}
+
+.entry-content h2,
+.entry-content .ql-editor h2 {
+    padding: 20px 0;
+    font-weight: 600;
+    font-size: 28px !important;
+    line-height: 36px;
+}
+
+.entry-content h3,
+.entry-content .ql-editor h3 {
+    padding: 18px 0;
+    font-weight: 600;
+    font-size: 25px !important;
+    line-height: 36px;
+}
+
+.entry-content ol,
+.entry-content .ql-editor ol {
+    font-size: 20px;
+    padding-left: 40px;
+    font-weight: 500;
+    list-style: decimal;
+}
+
+.entry-content ul,
+.entry-content .ql-editor ul {
+    list-style: disc;
+    padding-left: 40px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.entry-content p,
+.entry-content .ql-editor p {
+    font-size: 22px;
+    line-height: 2;
+    font-weight: 500;
+}
+
+.entry-content a,
+.entry-content .ql-editor a {
+    transition: all 0.2s linear;
+    color: #289ba1;
+}
+
+.entry-content a:hover,
+.entry-content .ql-editor a:hover {
+    @apply text-blue-600;
+}
+
+.entry-content blockquote,
+.entry-content .ql-editor blockquote {
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.entry-content img,
+.entry-content .ql-editor img {
+    width: 100%;
+    max-width: 60%;
+    margin: 40px auto;
+    border-radius: 20px;
+    height: auto;
+}
+.entry-content iframe,
+.ql-editor .ql-video {
+    aspect-ratio: 16/9;
+    width: 100%;
+    max-width: 60%;
+    border-radius: 10px;
+    margin: 20px auto;
+}
+
+.entry-content .ql-syntax {
+    @apply bg-slate-800 rounded-md;
+    color: #f8f8f2;
+    overflow: visible;
+    font-size: 20px;
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 16px;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.entry-content .ql-syntax::-webkit-scrollbar {
+    display: none;
+}
