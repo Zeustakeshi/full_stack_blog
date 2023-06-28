@@ -22,7 +22,7 @@ export const generateMetadata = async ({
 }) => {
     const res = await axios({
         method: "GET",
-        url: `http://localhost:4000/api/posts/details/${params.id}`,
+        url: `${process.env.MAIN_URL}/api/posts/details/${params.id}`,
     });
 
     const data: PostType = res.data;
@@ -36,7 +36,7 @@ export const generateMetadata = async ({
 const BlogPage = async ({ params }: { params: { id: string } }) => {
     const res = await axios({
         method: "GET",
-        url: `http://localhost:4000/api/posts/details/${params.id}`,
+        url: `${process.env.MAIN_URL}/api/posts/details/${params.id}`,
     });
     const data: PostType = res.data;
     return (

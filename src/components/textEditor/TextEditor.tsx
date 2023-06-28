@@ -1,12 +1,14 @@
+"use client";
 import { useRef } from "react";
-import ReactQuill from "react-quill";
+
 import { useMemo } from "react";
 import hljs from "highlight.js";
-
 // styles
 import "react-quill/dist/quill.snow.css";
 import "highlight.js/styles/base16/dracula.css";
 import "@/styles/editor.css";
+import dynamic from "next/dynamic";
+import ReactQuill from "react-quill";
 
 type TextEditorType = {
     content: string;
@@ -69,7 +71,6 @@ const TextEditor: React.FC<TextEditorType> = ({
             },
         };
     }, []);
-
     return (
         <ReactQuill
             ref={reactQuillRef}

@@ -25,8 +25,8 @@ const NewBlog = () => {
     const { handleUploadImage } = useFIrebaseImage();
 
     useEffect(() => {
-        if (!title.trim()) return;
-        document.title = title;
+        if (!title.trim()) document.title = "Mh-blog";
+        else document.title = title;
     }, [title]);
 
     useLayoutEffect(() => {
@@ -34,7 +34,6 @@ const NewBlog = () => {
             router.replace("/login");
         }
     }, [status, router]);
-
     const handleCreate = () => {
         initializeApp(firebaseConfig);
         if (title.trim().length < 5) {
@@ -45,10 +44,6 @@ const NewBlog = () => {
             toast.error("Invalid description");
             return null;
         }
-        // if (!imgURL.trim()) {
-        //     toast.error("Post image can't empty!");
-        //     return null;
-        // }
         if (content.trim().length <= 200) {
             toast.error("Invalid content!");
             return null;

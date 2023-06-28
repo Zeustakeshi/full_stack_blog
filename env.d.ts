@@ -10,5 +10,6 @@ namespace NodeJS {
         FIREBASE_AUTH_DOMAIN: string;
         FIREBASE_PROJECT_ID: string;
         FIREBASE_APP_ID: string;
+        MAIN_URL: string;
     }
 }

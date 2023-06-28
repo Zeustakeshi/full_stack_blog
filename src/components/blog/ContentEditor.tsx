@@ -1,7 +1,9 @@
-import { useState } from "react";
+"use client";
+import { useMemo, useState } from "react";
 import Button from "../button/Button";
-import TextEditor from "../textEditor/TextEditor";
+
 import parse from "html-react-parser";
+import dynamic from "next/dynamic";
 
 type ContentEditorType = {
     content: string;
@@ -13,7 +15,10 @@ const ContentEditor: React.FC<ContentEditorType> = ({
     setContent,
 }) => {
     const [showReview, setShowReview] = useState<boolean>(false);
-    // console.log(content);
+    const TextEditor = useMemo(
+        () => dynamic(() => import("../textEditor/TextEditor"), { ssr: false }),
+        []
+    );
     return (
         <div className="my-8">
             <div className=" flex justify-between items-start w-full h-full gap-5">
